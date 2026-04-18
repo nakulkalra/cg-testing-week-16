@@ -24,11 +24,19 @@ test("assessment-16", async ({ page }) => {
     .selectOption({ index: 2 });
   await page.locator(".react-datepicker__day--015").click();
 
+  await page.waitForTimeout(500);
+
   // Subject
-  const subject = await page.locator("#subjectsInput");
+  const subject = await page.locator('//*[@id="subjectsInput"]');
   await expect(subject).toBeEditable();
+  await page.waitForTimeout(500);
+
   await subject.click();
+  await page.waitForTimeout(500);
+
   await subject.fill("Maths");
+  await page.waitForTimeout(500);
+
   await page.keyboard.press("Enter");
 
   // Hobbies

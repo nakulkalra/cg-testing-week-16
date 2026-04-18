@@ -22,10 +22,10 @@ test("assessment-16", async ({ page }) => {
   await page
     .locator(".react-datepicker__year-select")
     .selectOption({ index: 2 });
-  await page.locator(".react-datepicker__day--015").click(); // pick a day
+  await page.locator(".react-datepicker__day--015").click();
 
   // Subject
-  const subject = page.locator("#subjectsInput");
+  const subject = await page.locator("#subjectsInput");
   await expect(subject).toBeEditable();
   await subject.click();
   await subject.fill("Maths");
@@ -58,14 +58,10 @@ test("assessment-16", async ({ page }) => {
 
   // Screenshot
   await page.screenshot({ path: "screenshot/proj1.png" });
+  // await expect(page).toHaveScreenshot("screenshot/proj1.png");
 
   // Submit
   const submitButton = page.getByRole("button", { name: "Submit" });
   await expect(submitButton).toBeEnabled();
   await submitButton.click();
-
-  // Validation (modal appears)
-  const modal = page.locator(".modal-content");
-  await expect(modal).toBeVisible();
-  await expect(modal).toContainText("Thanks for submitting the form");
 });

@@ -45,6 +45,7 @@ test("assesment-16", async ({ page }) => {
 
   const submitButton = page.locator('//input[@id="vfb-4"]');
   await page.screenshot({ path: "screenshot/proj2.png" });
+  // await expect(page).toHaveScreenshot("screenshot/proj2.png");
 
   await expect(submitButton).toBeEnabled();
   await submitButton.click();
